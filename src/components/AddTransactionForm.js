@@ -7,6 +7,14 @@ function AddTransactionForm({transactions, setTransactions}) {
     category: "",
     amount: ""
   });
+
+  function handleChange(e) {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  }
+
   return (
     <div className="ui segment">
       <form className="ui form">
