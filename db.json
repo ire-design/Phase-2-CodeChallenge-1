@@ -83,6 +83,13 @@
       "description": "Venmo, Pay Roommate for Rent",
       "category": "Housing",
       "amount": -975
+    },
+    {
+      "date": "2024-08-04",
+      "description": "movies",
+      "category": "Entertainment",
+      "amount": 60.5,
+      "id": 13
     }
   ]
 }
