@@ -15,6 +15,20 @@ function AddTransactionForm({transactions, setTransactions}) {
     });
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    fetch("http://192.168.100.40:8000/transactions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    })
+      .then(response => response.json())
+      .then(newTransaction => {
+        setTransactions([...transactions, newTransaction]);
+      });
+  }
   return (
     <div className="ui segment">
       <form className="ui form">
