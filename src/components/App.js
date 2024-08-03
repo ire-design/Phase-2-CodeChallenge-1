@@ -10,6 +10,7 @@ function App() {
       .then(response => response.json())
       .then(data => setTransactions(data))
   },[])
+  
 
   return (
     <div className="ui raised segment">
