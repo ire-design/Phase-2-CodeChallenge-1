@@ -10,14 +10,22 @@ function App() {
       .then(response => response.json())
       .then(data => setTransactions(data))
   },[])
-  
+
+  /* youtube- case insensitive searchTerm */
+  const filteredTransactions = transactions.filter(transaction =>
+    transaction.description.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="ui raised segment">
       <div className="ui segment violet inverted">
         <h2>The Royal Bank of Flatiron</h2>
       </div>
-      <AccountContainer />
+      <AccountContainer 
+      transactions = {filteredTransactions}
+      setTransactions = {setTransactions}
+      setSearchTerm = {setSearchTerm}
+      />
     </div>
   );
 }
