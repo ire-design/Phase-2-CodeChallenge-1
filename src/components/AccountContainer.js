@@ -8,7 +8,7 @@ function AccountContainer({transactions, setTransactions, setSearchTerm}) {
     <div>
       <Search setSearchTerm={setSearchTerm}/>
       <AddTransactionForm setTransactions={setTransactions}/>
-      <TransactionsList />
+      <TransactionsList transactions={transactions} setTransactions={setTransactions}/>
     </div>
   );
 }
