@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-function AddTransactionForm({transactions, setTransactions}) {
+function AddTransactionForm({ setTransactions }) {
   const [formData, setFormData] = useState({
     date: "",
     description: "",
@@ -8,35 +8,76 @@ function AddTransactionForm({transactions, setTransactions}) {
     amount: ""
   });
 
-  function handleChange(e) {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     });
-  }
+  };
 
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://192.168.100.40:8001/transactions", {
+    const newTransaction = {
+      ...formData,
+      amount: parseFloat(formData.amount)
+    };
+
+    fetch("http://localhost:8001/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(newTransaction)
     })
       .then(response => response.json())
-      .then(newTransaction => {
-        setTransactions([...transactions, newTransaction]);
+      .then(data => {
+        setTransactions((prevTransactions) => [...prevTransactions, data]);
+      })
+      .catch(error => {
+        console.error("Error:", error);
       });
-  }
+
+    setFormData({
+      date: "",
+      description: "",
+      category: "",
+      amount: ""
+    });
+  };
+
   return (
     <div className="ui segment">
-      <form className="ui form">
+      <form className="ui form" onSubmit={handleSubmit}>
         <div className="inline fields">
-          <input type="date" name="date" />
-          <input type="text" name="description" placeholder="Description" />
-          <input type="text" name="category" placeholder="Category" />
-          <input type="number" name="amount" placeholder="Amount" step="0.01" />
+          <input
+            type="date"
+            name="date"
+            value={formData.date}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="description"
+            placeholder="Description"
+            value={formData.description}
+            onChange={handleChange}
+          />
+          <input
+            type="text"
+            name="category"
+            placeholder="Category"
+            value={formData.category}
+            onChange={handleChange}
+          />
+          <input
+            type="number"
+            name="amount"
+            placeholder="Amount"
+            step="0.01"
+            value={formData.amount}
+            onChange={handleChange}
+          />
         </div>
         <button className="ui button" type="submit">
           Add Transaction
