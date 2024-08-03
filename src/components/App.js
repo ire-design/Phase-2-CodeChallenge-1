@@ -2,8 +2,14 @@ import React, {useState, useEffect} from "react";
 import AccountContainer from "./AccountContainer";
 
 function App() {
-  
+  const [transactions, setTransactions] = useState([])/* arr to hold transaction data */
+  const [searchTerm, setSearchTerm] = useState("")/* string for search input */
 
+  useEffect(() => {
+    fetch('http://192.168.100.40:8001/transactions')
+      .then(response => response.json())
+      .then(data => setTransactions(data))
+  },[])
 
   return (
     <div className="ui raised segment">
