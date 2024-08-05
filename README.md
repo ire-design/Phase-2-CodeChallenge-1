@@ -3,6 +3,8 @@
 Welcome to the Bank of Flatiron, where you can trust us with all your financial
 data! Use the below gif as an example of how the app should function.
 
+![delete-fn](./screenshots/flatironbank.png)
+
 ![demo](https://curriculum-content.s3.amazonaws.com/phase-2/phase-2-code-challenge-bank-of-flatiron/demo.gif)
 
 > To view in VSCode, right click on the README.md file and select "Open Preview".
