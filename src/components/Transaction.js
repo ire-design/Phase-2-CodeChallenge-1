@@ -2,7 +2,7 @@ import React from "react";
 
 function Transaction({ transaction, setTransactions }) {
   const handleDelete = () => {
-    fetch(`http://localhost:8001/transactions/${transaction.id}`, {
+    fetch(`https://json-server-p456.onrender.com/transactions/${transaction.id}`, {
       method: "DELETE"
     }).then(() => {
       setTransactions(prevTransactions =>

@@ -23,7 +23,7 @@ function AddTransactionForm({ setTransactions }) {
       amount: parseFloat(formData.amount)
     };
 
-    fetch("http://localhost:8001/transactions", {
+    fetch("https://json-server-p456.onrender.com/transactions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

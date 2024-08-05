@@ -6,7 +6,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")/* string for search input */
 
   useEffect(() => {
-    fetch('http://localhost:8001/transactions')
+    fetch('https://json-server-p456.onrender.com/transactions')
       .then(response => response.json())
       .then(data => setTransactions(data))
   },[])
